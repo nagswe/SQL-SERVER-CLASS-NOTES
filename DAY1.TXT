@@ -1,0 +1,151 @@
+SQL CONCEPTS
+
+DAY1
+
+What is sql
+Structured Query Language
+
+what is database 
+Databse is nothing but a container contains the data
+example: newspaper
+
+Database: Data
+
+Dtabase divided into three types
+
+1. Sctructured Data Base
+
+ex: rows, colums,tables
+
+2.mi Structured DataBase
+
+ex: json,xml,
+
+3.untructured DataBsase
+
+ex:  text ,videos,images
+
+Database Use Case
+
+Database ----> API ---> YOUTUBE
+
+Database Two Types
+
+Sql Database : will store Structured Database
+
+Non Sql Database : Wll Store Semi Structured Data and Unstructured Data
+
+SQLVS MySQL
+
+Database Management system
+
+ex : Mobile -sql sim is the MySQL
+
+Database Management system types
+
+MySQL, Postgres Sql, Microsoft Sql server,Oracle Database
+
+RDMS
+
+Relational Database Management system
+
+Primary Key and Foreign Key
+
+Database-->Data-->Structured Data--->table
+
+install the SQL SERVER
+
+Connect the server
+
+select New Query
+
+Name:black colour object_Names/Colums_names/Table_Name
+
+Blue Color :Create/Drop/Inset: Commands
+
+Pink Colour : Function Names
+
+Important steps
+
+SQL Server : No Case Sensitive (A=a)
+
+examples : create Database Demo
+
+create DATABSE DEMO2
+
+---comment/message/info
+
+---Name---
+
+--create database Demo55--
+
+Objects_Names : TN,VN,FN,DB etc,... Unique
+
+create database demo no duplicates will create
+
+--Name Proper
+
+Create Database SalesDB
+
+SWIFT+UP ARROW HIGHLIGHT THE LINE
+
+TO EXCUTE THE QUERY SELCT F5
+
+select * from INFORMATION_SCHEMA.TABLES,DIM,FACT
+
+Drop database DEMO2
+
+create Table Emp(eid int, ename varchar(20))
+
+
+---select * into new_table from old_name
+
+
+Create Database Dev
+
+Create schema DIM
+
+Create table dim.EMP(Ename int,Eid varchar(50),Age int)
+
+select *  from dim.EMP
+
+
+Create Database DT
+
+use DT
+
+Drop database DT
+
+------Number----
+------BIT------
+
+create table a1(id bit)
+
+select * from a1
+
+----tiny init---
+
+Insert into a1 (id) values (0)
+
+Insert into a1 (id) values (1)
+
+create table a2(id tinyint)
+
+insert into a2 (id) values (0)
+
+select * from a2
+
+------int----- 2.14*10^9
+
+
+
+
+
+
+
+
+
+
+
+
+
