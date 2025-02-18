@@ -1,0 +1,244 @@
+SQL CONCEPTS
+
+DAY1
+
+What is sql
+Structured Query Language
+
+what is database 
+Database is nothing but a container contains the data
+example: newspaper
+
+Database: Data
+
+Database divided into three types
+
+1. Structured Data Base
+
+ex: rows, columns,tables
+
+2.semi Structured DataBase
+
+ex: json,xml,
+
+3.untructured DataBsase
+
+ex:  text ,videos,images
+
+Database Use Case
+
+Database ----> API ---> YOUTUBE
+
+Database Two Types
+
+Sql Database : will store Structured Database
+
+Non Sql Database : Wll Store Semi Structured Data and Unstructured Data
+
+SQLVS MySQL
+
+Database Management system
+
+ex : Mobile -sql sim is the MySQL
+
+Database Management system types
+
+MySQL, Postgres Sql, Microsoft Sql server,Oracle Database
+
+RDMS
+
+Relational Database Management system
+
+Primary Key and Foreign Key
+
+Database-->Data-->Structured Data--->table
+
+install the SQL SERVER
+
+Connect the server
+
+select New Query
+
+Name:black colour object_Names/Colums_names/Table_Name
+
+Blue Color :Create/Drop/Insert: Commands
+
+Pink Colour : Function Names
+
+Important steps
+
+SQL Server : No Case Sensitive (A=a)
+
+examples : create Database Demo
+
+create DATABASE DEMO2
+
+---comment/message/info
+
+---Name---
+
+--create database Demo55--
+
+Objects_Names : TN,VN,FN,DB etc,... Unique
+
+create database demo no duplicates will create
+
+--Name Proper
+
+Create Database SalesDB
+
+SWIFT+UP ARROW HIGHLIGHT THE LINE
+
+TO EXCUTE THE QUERY SELCT F5
+
+select * from INFORMATION_SCHEMA.TABLES,DIM,FACT
+
+Drop database DEMO2
+
+create Table Emp(eid int, ename varchar(20))
+
+
+---select * into new_table from old_name
+
+
+Create Database Dev
+
+Create schema DIM
+
+Create table dim.EMP(Ename int,Eid varchar(50),Age int)
+
+select *  from dim.EMP
+
+
+---  data types ----
+1) Number
+   1) Whole Number :- Round up
+   2) Decimals Number : dits
+
+1) Whole number
+
+a) BIT :- 0,1, No decimals, 100=1 , 1bytes
+
+Create Database DT
+
+use DT
+
+Drop database DT
+
+------Number----
+------BIT------
+
+create table a1(id bit)
+
+select * from a1
+
+
+Insert into a1 (id) values (0)
+
+Insert into a1 (id) values (1)
+
+
+Gender_id Bit 0-F ,1-M
+
+Order_status Bit 0-D,1-P
+
+------------thinyint----- 0 to 255
+
+create table a2(id tinyint)
+
+insert into a2 (id) values (0)
+
+insert into a2 (id) values (255)
+
+insert into a2 (id) values (100.50)
+
+
+-------int----10 char
+
+
+create table a3(id int)
+
+insert into a3 (id) values (0)
+
+insert into a3 (id) values (1000000000)
+
+insert into a3 (id) values (200)
+
+insert into a3 (id) values (-300)
+
+insert into a3 (id) values (102.57)
+
+insert into a3 (id) values (214000000)
+
+insert into a3 (id) values (9999988888)
+
+select * from a3
+
+select *, DATALENGTH(id) from a3
+
+
+------Bigint----- phone Number/ATM NO/ACC --19  CHAR 
+
+
+create table a4(id bigint)
+
+insert into a4 (id) values (7989420216)
+
+insert into a4 (id) values (1234567989248545)
+
+insert into a4 (id) values (615165113486465165)
+
+insert into a4 (id) values (-300)
+
+insert into a4 (id) values (102.57)
+
+insert into a4 (id) values (214000000)
+
+insert into a4 (id) values (9999988888)
+
+select * from a4
+
+select *, DATALENGTH(id) from a4
+   
+
+-----Decimal-Number---- +/-
+
+1) Float --> Qty, without currency
+2) Money --> Currency
+
+create table a5(qty float)
+
+insert into a5 (qty) values (-200.25)
+
+insert into a5 (qty) values (100.578588)
+
+insert into a5 (qty) values (100)
+
+-----money----
+
+create table a6 (sales money)
+
+insert into a6 (sales) values (*200.25)
+
+insert into a6 (sales) values (100.2578556)
+
+insert into a6 (sales) values (100)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
