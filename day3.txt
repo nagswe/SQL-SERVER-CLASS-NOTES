@@ -1,0 +1,109 @@
+------Text Data Type-------size
+Char :- Fixed Length,8000 char, 8000bytes
+Varchar :- Variable_length, 8000char 1bytes 8000bytes
+Nchar :- Nonunique value, other languages 4000 char
+Nvarchar :- 4000char
+TEXT : Upto 2gb ,1bytes 
+NTEXT : Upto 2gb, 2bytes
+IMAGE : Filepath 
+
+
+Create database DT2
+
+use DT2
+
+create table T1(Name char(5))
+
+insert into T1(Name) values('kiran')
+ 
+insert into T1(Name) values('Raju')
+
+insert into T1(Name) values('A')
+
+select * from t1
+
+select *,len(Name), No_char,DATALENGTH(Name) size from t1
+
+------VARCHAR------
+
+create table T3(Name varchar(5))
+
+insert into T3(Name) values('kiran')
+ 
+insert into T3(Name) values('Raju')
+
+insert into T3(Name) values('A')
+
+select * from t3
+
+select *,len(Name) No_char,DATALENGTH(Name) size from t3
+
+-----Nchar-----
+
+create table T
+
+select UNICODE('B')
+
+
+create table a8(Name Nchar(5))
+
+insert into a8 (Name) Values ('Kiran')
+
+insert into a8 (Name) Values ('Raju')
+
+insert into a8 (Name) Values ('G')
+
+select * from a8
+
+select *,LEN(NAME),DATALENGTH(NAME) FROM A8
+
+-------Nvarchar-----
+
+
+
+create table a9(Name nvarchar(5))
+
+insert into a9 (Name) Values ('Kiran')
+
+insert into a9 (Name) Values ('Raju')
+
+insert into a9 (Name) Values ('G')
+
+select * from a9
+
+select *,LEN(NAME),DATALENGTH(NAME) FROM a9
+
+
+create table T10(Name text)
+
+insert into T10(Name) values('kiran')
+ 
+insert into T10(Name) values('Raju')
+
+insert into T10(Name) values('A')
+
+select * from T10
+
+select *,DATALENGTH(Name) size from T10
+
+
+
+create table T11(Name char(5))
+
+insert into T11(Name) values('kiran')
+ 
+insert into T11(Name) values('Raju')
+
+insert into T11(Name) values('A')
+
+select * from T11
+
+select *,DATALENGTH(Name) size from t11
+
+
+CREATE TABLE A12(ID_IMAGE)
+
+INSERT INTO A12 (ID) VALUES ('D:\Download')
+
+select * from a12
+
