@@ -1,0 +1,124 @@
+DATE AND TIME
+
+
+create table b1(DOB DATE)
+INSERT INTO B1 VALUES ('0001-01-01') ----MIN
+
+INSERT INTO B1 VALUES ('9999-12-31')----MAX
+
+create table b11(DOB DATETIME)
+
+INSERT INTO B11 VALUES ('2025-02-19 21:28:30')
+
+CONSTRAINTS
+
+Null
+Not null
+check
+Default
+
+
+create database demo1
+
+use demo
+
+create table std(sid int,saname Varchar(50), Age int,Marks int, country Varchar(10))
+
+select * from std
+
+insert into std(sid,Sname,Age,Marks,country) values (1,'KUMAR',25,320,'INDIA')
+
+insert into std(sid) Values(2)
+
+insert into std(sanme,marks) Values('Raju',69)
+
+-----null----
+create table s1(id int null)
+
+insert ito s1(id) Values (null)
+
+select * fom s1
+
+-----Notnull---
+
+create table s2(sid int not null,sname varchar(20))
+
+selec * from s2
+
+insert into s2 (sid,sname) values (1,'kiran')
+
+insert into s3 (sname) values ('kiran')
+
+-----check---
+
+create table s4(sid int,sname varchar(20),age int check(age>18))
+
+insert into s4 (sid,sname,age) values(1,'naresh',28)
+
+insert into s4 (sid,sname,age) values(1,'naresh',17)
+
+
+create table cs (cid int,gender varchar(20)check(gender= 'male'))
+
+insert into cs (cid,gender) values (3,'male')
+
+----M,male,males----
+
+create table cs2 (cid int,gender varchar(20)check(gender in ('m','male','males')))
+
+insert into cs2 (cid,gender) values (4,'males')
+
+
+----rate>100
+
+create table  cs3(pid int,Rate money check(rate>100))
+
+insert into cs3 values(1,500)
+
+insert into cs3 values(2,50)
+
+----default----
+
+
+
+create table s6(sid int,sname varchar(50),country varchar(10) default 'india')
+
+insert into s6(sid,sname,country) values(1,'nagesh','us')
+
+
+insert into s6(sid,sname) values(1,'nagesh')
+
+
+create table s7(uid int,gender varchar(10) default 'm')
+
+insert into s7 (uid,gender) values (1,'male')
+
+insert into s7 (uid) values (1)
+
+
+identity
+
+create table s7(eid int identity(1,1),name varchar(20))
+
+insert into s8(name) values('kiran')
+
+insert into s8(name) values('raju')
+
+Order_Table
+Order_id identity(202304111,1)
+202304111
+202304112
+202304113
+
+create table s10 (oid bigint identity(2023041101,1),name varchar(20))
+
+insert into s10 (Name) values ('ravi')
+insert into s10 (Name) values ('ramu')
+
+create table s11 (id int identity(1,1),sname varchar(20) not null)
+
+insert into s11 (sName) values ('ravi')
+insert into s11 (sName) values ('null')
+insert into s11 (sName) values ('ramu')
+set identity_insert s11 ON
+insert into s11 (sName) values ('ramu')
