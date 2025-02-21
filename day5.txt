@@ -1,0 +1,93 @@
+-----key-----
+Unique key
+Primary key
+foreign key
+
+Unique key :- it can allow only Unique values (No Duplicates) & Single Null Values
+
+create table T1(id int,sname varchar(20) unique)
+
+select * from T1
+
+insert into t1 (id,sname) values (1,'kumar')
+
+insert into t1 (id,sname) values (2,'ramu')
+
+insert into t1 (id,sname) values (3,'kumar')
+
+insert into t1 (id,sname) values (1,'gopi')
+
+insert into t1 (id,sname) values (1,null)
+
+insert into t1 (id,sname) values (2,null)
+
+
+---------primarykey-----
+Primarykey :- Primary coloumns of the table
+
+-> it can't allow Duplicates values / it can allow the the Unique values
+-> it can't allow the Null values
+
+
+create table T2(id int Primary key,sname varchar(20))
+
+select * from T2
+
+insert into t2 (id,sname) values (1,'kumar')
+
+insert into t2 (id,sname) values (2,'ramu')
+
+insert into t2 (id,sname) values (null,'kumar')
+
+------Foreignkey-----
+foreign key
+--> Duplicates
+--> Null Values
+---> Primary then fk
+---> Multiple fk in a table
+
+create table t3(id_f int,marks int,subject varchar(20),foreign key(ID_F) references t2 (id))
+
+insert into t3(id_F,marks,subject) values (1,200,'maths')
+
+insert into t3(id_F,marks,subject) values (2,300,'telugu')
+
+insert into t3(id_F,marks,subject) values (3,500,'telugu')
+
+select * from t2
+select * from t3
+
+create table F(FID varchar(10) primary key,F_name varchar(50))
+
+create table c(Cid varchar(10) primary key,c_name varchar(20),marks int,F_id varchar(10),Foreign key(F_id) references F(fid))
+
+select * from f
+
+select * from c
+
+insert into f values('f1','ramana')
+
+insert into c(cid,c_name,marks,f_id) values ('c1','raju',320,'f1')
+
+insert into c(cid,c_name,marks,f_id) values ('c2','raju',320,'f2')
+
+
+
+create table a5(id int primary key, sName varchar(20) primary key)
+
+
+create table a5(id int unique, sName varchar(20) Unique)
+
+create table PT(PID int primary key)
+create table CT(CID int primary key)
+create table LT(LID int primary key)
+
+CREATE TABLE Fact(order_id int primary key,Pid int,Cid int,Lid int,
+foreign key(pid) references pt(pid),
+foreign key(cid) references ct(cid),
+foreign key(lid) references lt(lid), Sales money)
+
+SELECT * FROM PT
+SELECT * FROM LT
+SELECT * FROM CT
+SELECT * FROM FACT
