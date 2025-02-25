@@ -1,0 +1,809 @@
+SQL CONCEPTS
+
+DAY1
+
+What is sql
+Structured Query Language
+
+what is database 
+Database is nothing but a container contains the data
+example: newspaper
+
+Database: Data
+
+Database divided into three types
+
+1. Structured Data Base
+
+ex: rows, columns,tables
+
+2.semi Structured DataBase
+
+ex: json,xml,
+
+3.untructured DataBsase
+
+ex:  text ,videos,images
+
+Database Use Case
+
+Database ----> API ---> YOUTUBE
+
+Database Two Types
+
+Sql Database : will store Structured Database
+
+Non Sql Database : Wll Store Semi Structured Data and Unstructured Data
+
+SQLVS MySQL
+
+Database Management system
+
+ex : Mobile -sql sim is the MySQL
+
+Database Management system types
+
+MySQL, Postgres Sql, Microsoft Sql server,Oracle Database
+
+RDMS
+
+Relational Database Management system
+
+Primary Key and Foreign Key
+
+Database-->Data-->Structured Data--->table
+
+install the SQL SERVER
+
+Connect the server
+
+select New Query
+
+Name:black colour object_Names/Colums_names/Table_Name
+
+Blue Color :Create/Drop/Insert: Commands
+
+Pink Colour : Function Names
+
+Important steps
+
+SQL Server : No Case Sensitive (A=a)
+
+examples : create Database Demo
+
+create DATABASE DEMO2
+
+---comment/message/info
+
+---Name---
+
+--create database Demo55--
+
+Objects_Names : TN,VN,FN,DB etc,... Unique
+
+create database demo no duplicates will create
+
+--Name Proper
+
+Create Database SalesDB
+
+SWIFT+UP ARROW HIGHLIGHT THE LINE
+
+TO EXCUTE THE QUERY SELCT F5
+
+select * from INFORMATION_SCHEMA.TABLES,DIM,FACT
+
+Drop database DEMO2
+
+create Table Emp(eid int, ename varchar(20))
+
+
+---select * into new_table from old_name
+
+
+Create Database Dev
+
+Create schema DIM
+
+Create table dim.EMP(Ename int,Eid varchar(50),Age int)
+
+select *  from dim.EMP
+
+
+---  data types ----
+1) Number
+   1) Whole Number :- Round up 
+   2) Decimals Number : dits
+
+1) Whole number
+
+a) BIT :- 0,1, No decimals, 100=1 , 1bytes
+
+Create Database PT
+
+use pT
+
+Drop database DT
+
+------Number----
+------BIT------
+
+create table a1(id bit)
+
+select * from a1
+
+
+Insert into a1 (id) values (0)
+
+Insert into a1 (id) values (1)
+
+
+Gender_id Bit 0-F ,1-M
+
+Order_status Bit 0-D,1-P
+
+------------thinyint----- 0 to 255
+
+create table a22(id tinyint)
+
+insert into a22 (id) values (0)
+
+insert into a22 (id) values (255)
+
+insert into a22 (id) values (100.50)
+
+
+-------int----10 char 
+
+
+create table a3(id int)
+
+insert into a3 (id) values (0)
+
+insert into a3 (id) values (1000000000)
+
+insert into a3 (id) values (200)
+
+insert into a3 (id) values (-300)
+
+insert into a3 (id) values (102.57)
+
+insert into a3 (id) values (214000000)
+
+insert into a3 (id) values (9999988888)
+
+select * from a3
+
+select *, DATALENGTH(id) from a3
+
+
+------Bigint----- phone Number/ATM NO/ACC --19  CHAR 
+
+
+create table a4(id bigint)
+
+insert into a4 (id) values (7989420216)
+
+insert into a4 (id) values (1234567989248545)
+
+insert into a4 (id) values (615165113486465165)
+
+insert into a4 (id) values (-300)
+
+insert into a4 (id) values (102.57)
+
+insert into a4 (id) values (214000000)
+
+insert into a4 (id) values (9999988888)
+
+select * from a4
+
+select *, DATALENGTH(id) from a4
+   
+
+-----Decimal-Number---- +/-
+
+1) Float --> Qty, without currency
+2) Money --> Currency
+
+create table a5(qty float)
+
+insert into a5 (qty) values (-200.25)
+
+insert into a5 (qty) values (100.578588)
+--
+insert into a5 (qty) values (100)
+
+-----money----
+
+create table a6 (sales money)
+
+insert into a6 (sales) values (*200.25)
+
+insert into a6 (sales) values (100.2578556)
+
+insert into a6 (sales) values (100)
+
+
+
+------Text Data Type-------size
+Char :- Fixed Length,8000 char, 8000bytes
+Varchar :- Variable_length, 8000char 1bytes 8000bytes
+Nchar :- Nonunique value, other languages 4000 char
+Nvarchar :- 4000char
+TEXT : Upto 2gb ,1bytes 
+NTEXT : Upto 2gb, 2bytes
+IMAGE : Filepath 
+
+
+Create database DT2
+
+use DT2
+
+create table T1(Name char(5))
+
+insert into T1(Name) values('kiran')
+ 
+insert into T1(Name) values('Raju')
+
+insert into T1(Name) values('A')
+
+select * from t1
+
+select *,len(Name), No_char,DATALENGTH(Name) size from t1
+
+------VARCHAR------
+
+create table T3(Name varchar(5))
+
+insert into T3(Name) values('kiran')
+ 
+insert into T3(Name) values('Raju')
+
+insert into T3(Name) values('A')
+
+select * from t3
+
+select *,len(Name) No_char,DATALENGTH(Name) size from t3
+
+-----Nchar-----
+
+create table T
+
+select UNICODE('B')
+
+
+create table a8(Name Nchar(5))
+
+insert into a8 (Name) Values ('Kiran')
+
+insert into a8 (Name) Values ('Raju')
+
+insert into a8 (Name) Values ('G')
+
+select * from a8
+
+select *,LEN(NAME),DATALENGTH(NAME) FROM A8
+
+-------Nvarchar-----
+
+
+
+create table a9(Name nvarchar(5))
+
+insert into a9 (Name) Values ('Kiran')
+
+insert into a9 (Name) Values ('Raju')
+
+insert into a9 (Name) Values ('G')
+
+select * from a9
+
+select *,LEN(NAME),DATALENGTH(NAME) FROM a9
+
+
+create table T10(Name text)
+
+insert into T10(Name) values('kiran')
+ 
+insert into T10(Name) values('Raju')
+
+insert into T10(Name) values('A')
+
+select * from T10
+
+select *,DATALENGTH(Name) size from T10
+
+
+
+create table T11(Name char(5))
+
+insert into T11(Name) values('kiran')
+ 
+insert into T11(Name) values('Raju')
+
+insert into T11(Name) values('A')
+
+select * from T11
+
+select *,DATALENGTH(Name) size from t11
+
+
+CREATE TABLE A12(ID_IMAGE)
+
+INSERT INTO A12 (ID) VALUES ('D:\Download')
+
+select * from a12
+
+DAY4
+
+DATE AND TIME
+
+
+create table b1(DOB DATE)
+INSERT INTO B1 VALUES ('0001-01-01') ----MIN
+
+INSERT INTO B1 VALUES ('9999-12-31')----MAX
+
+create table b11(DOB DATETIME)
+
+INSERT INTO B11 VALUES ('2025-02-19 21:28:30')
+
+CONSTRAINTS
+
+Null
+Not null
+check
+Default
+
+
+create database demo1
+
+use demo1
+
+create table std(sid int,saname Varchar(50), Age int,Marks int, country Varchar(10))
+
+select * from std
+
+insert into std(sid,Sname,Age,Marks,country) values (1,'KUMAR',25,35,'INDIA')
+
+insert into std(sid) Values(2)
+
+insert into std(sname,marks) Values('Raju',69)
+
+-----null----
+create table s1(id int null)
+
+insert ito s1(id) Values (null)
+
+select * fom s1
+
+-----Notnull---
+
+create table s2(sid int not null,sname varchar(20))
+
+selec * from s2
+
+insert into s2 (sid,sname) values (1,'kiran')
+
+insert into s3 (sname) values ('kiran')
+
+-----check---
+
+create table s4(sid int,sname varchar(20),age int check(age>18))
+
+insert into s4 (sid,sname,age) values(1,'naresh',28)
+
+insert into s4 (sid,sname,age) values(1,'naresh',17)
+
+
+create table cs (cid int,gender varchar(20)check(gender= 'male'))
+
+insert into cs (cid,gender) values (3,'male')
+
+----M,male,males----
+
+create table cs2 (cid int,gender varchar(20)check(gender in ('m','male','males')))
+
+insert into cs2 (cid,gender) values (4,'males')
+
+
+----rate>100
+
+create table  cs3(pid int,Rate money check(rate>100))
+
+insert into cs3 values(1,500)
+
+insert into cs3 values(2,50)
+
+----default----
+
+
+
+create table s6(sid int,sname varchar(50),country varchar(10) default 'india')
+
+insert into s6(sid,sname,country) values(1,'nagesh','US')
+
+
+insert into s6(sid,sname) values(1,'nagesh')
+
+
+create table s7(uid int,gender varchar(10) default 'm')
+
+insert into s7 (uid,gender) values (1,'male')
+
+insert into s7 (uid) values (1)
+
+
+
+
+
+create table s7(eid int identity(1,1),name varchar(20))
+
+insert into s8(name) values('kiran')
+
+insert into s8(name) values('raju')
+
+Order_Table
+Order_id identity(202304111,1)
+202304111
+202304112
+202304113
+
+create table s10 (oid bigint identity(2023041101,1),name varchar(20))
+
+insert into s10 (Name) values ('ravi')
+insert into s10 (Name) values ('ramu')
+
+create table s11 (id int identity(1,1),sname varchar(20) not null)
+
+insert into s11 (sName) values ('ravi')
+insert into s11 (sName) values ('null')
+insert into s11 (sName) values ('ramu')
+set identity_insert s11 ON
+insert into s11 (sName) values ('ramu')
+
+-----key-----
+Unique key
+Primary key
+foreign key
+
+Unique key :- it can allow only Unique values (No Duplicates) & Single Null Values
+
+create table T1(id int,sname varchar(20) unique)
+
+select * from T1
+
+insert into t1 (id,sname) values (1,'kumar')
+
+insert into t1 (id,sname) values (2,'ramu')
+
+insert into t1 (id,sname) values (3,'kumar')
+
+insert into t1 (id,sname) values (1,'gopi')
+
+insert into t1 (id,sname) values (1,null)
+
+insert into t1 (id,sname) values (2,null)
+
+
+---------primarykey-----
+Primarykey :- Primary coloumns of the table
+
+-> it can't allow Duplicates values / it can allow the the Unique values
+-> it can't allow the Null values
+
+
+create table T2(id int Primary key,sname varchar(20))
+
+select * from T2
+
+insert into t2 (id,sname) values (1,'kumar')
+
+insert into t2 (id,sname) values (2,'ramu')
+
+insert into t2 (id,sname) values (null,'kumar')
+
+------Foreignkey-----
+foreign key
+--> Duplicates
+--> Null Values
+---> Primary then fk
+---> Multiple fk in a table
+
+create table t3(id_f int,marks int,subject varchar(20),foreign key(ID_F) references t2 (id))
+
+insert into t3(id_F,marks,subject) values (1,200,'maths')
+
+insert into t3(id_F,marks,subject) values (2,300,'telugu')
+
+insert into t3(id_F,marks,subject) values (3,500,'telugu')
+
+select * from t2
+select * from t3
+
+create table F(FID varchar(10) primary key,F_name varchar(50))
+
+create table c(Cid varchar(10) primary key,c_name varchar(20),marks int,F_id varchar(10),Foreign key(F_id) references F(fid))
+
+select * from f
+
+select * from c
+
+insert into f values('f1','ramana')
+
+insert into f values('f2','ravi')
+
+insert into c(cid,c_name,marks,f_id) values ('c1','raju',320,'f1')
+
+insert into c(cid,c_name,marks,f_id) values ('c2','raju',320,'f2')
+
+insert into c(cid,c_name,marks,f_id) values ('c2','raju',320,'f3')
+
+create table x5(id int primary key, sName varchar(20) primary key)
+
+
+create table x5(id int unique, sName varchar(20) Unique)
+
+create table PT(PID int primary key)
+create table CT(CID int primary key)
+create table LT(LID int primary key)
+
+CREATE TABLE Fact(order_id int primary key,Pid int,Cid int,Lid int,
+foreign key(pid) references pt(pid),
+foreign key(cid) references ct(cid),
+foreign key(lid) references lt(lid), Sales money)
+
+SELECT * FROM PT
+SELECT * FROM LT
+SELECT * FROM CT
+SELECT * FROM FACT
+
+
+DAY6
+
+SQL COMMADS
+
+CREATE:- Table creation
+ALTER:- Modify the table
+INSERT:- add the Rows
+UPDATE:- old values new values in a rows
+GRANT:- Share the Data in Others
+REVOKE:- Cancel the share
+DELETE:- Remove the rows based on the cond
+TRUNCATE:- Clean the table
+DROP: Remove the object
+
+SQL COMMANDS
+------------
+5 group
+1) DDL :- Data definition Language :- Create And manage
+2) DML :- DML(Data Manipulation Language) :- Rows ---> add,chane-->remove
+3) DCL :- Data control Language:- Access provide & cancel
+4) TCL :- Transition control Language :- Manage the transitions
+5)DQL :- Data Query Language :- Check & Analysys
+
+DDL :-
+1) Create :- creating the object (Database ,schema, table, view, etc,..)
+
+How  to Create Database
+
+CREATE TABLE ORD(
+Oid int identity(1,1),
+P_Name Varchar(20) unique,
+Qty float check (qty>=0),Rate money check(rate>10),
+amt money,
+cs varchar(20) not null)
+
+select * from ORD
+
+Alter :- Modify the objects (Table, view, SP, UDF, .)
+---> Object Names can't modify the alter commands (sp_Rename)
+
+Alter Use
+1) add the New coloums
+2) Remove Coloumns in a Table
+3) change the Data types
+4) Remove the Contraints
+5) add the constrains
+
+-------Add the New coloumns e.g oreder_status,country,state,city,gender-----
+
+
+Alter table ORD
+add o_status varchar(10)
+
+Alter table ORD
+add Country varchar(10),state_Name varchar(10),city varchar(10),gender int 
+
+insert into ORD(P_Name,qty,rate,amt,cs,city) 
+values('Tab',2,5000,10000,'raju','kakinada')
+
+----add new columns Did int Not Null----
+
+alter table ORD
+ADD DID int not null
+
+Not null , Unique , Primary key
+Remove all ROS in tables
+
+Truncate table ORD
+
+alter table ORD
+ADD abc int Default 'india'
+
+alter table ORD
+ADD abc2 int check (abc>10)
+
+-----Remove coloums----
+--- Remove key, pk, ck, df, fk, uk
+
+------How to remove the contraints----
+
+Alter table E_table_name
+Drop key_id
+
+-----Remove Unique key-----
+alter table ORD Uniquekey
+Drop [UQ__ORD__9634B4F27192BE1A]
+
+-----Remove check---
+alter table ORD
+drop [CK__ORD__Qty__108B795B],[CK__ORD__Rate__117F9D94],[DF__ORD__abc__1367E606]
+
+-----Remove pk and fk------
+
+create table p1(Pid int primary key,Panme varchar(20))
+
+create table o1 (oid int primary key,pid int,rate money,foreign key (pid) references p1(pid))
+
+------Remove the fk and pk---
+alter table ORD
+drop [FK__o1__pid__182C9B23]
+
+alter table ORD
+drop [PK__o1__C2FFCF130AB529C1]
+
+day7
+
+----remove coloums---key remove(pk,fk,ck,dfuk)
+single coloumn
+alter table tn
+drop column e_cn
+
+----multiremove coloums---
+alter table tn
+drop columnn e_cn
+
+-----Change the constaints (Null--->not nul),not null--->null
+alter table TN
+alter column E_cn datatype constraint
+
+alter table ord
+alter column P_name varchar(20) not null
+
+how to remove null values
+
+delete from ORD where o_status is null
+
+----change the data type column in table and size ----
+
+alter table tn
+alter column E_cn newdatatype constraint
+
+alter table ord
+alter column gender varchar (10)
+
+alter table ord
+alter column cs varchar(10) not null
+
+create table a1(id varchar (20))
+
+insert into a1 (id) values ('kiran'),('ravi'),('subbu')
+
+select * from a1
+
+alter table a1
+alter column id int
+
+create table a2(id int)
+
+insert into a2 (id) values (1),(2),(3)
+
+select * from a2
+
+alter table a2
+alter column id varchar
+
+note :
+text : text,numbers,dates,unicode_values will be changed
+
+
+alter table ord
+add check (qty>0)
+
+alter table ord
+add check (rate>=100)
+
+
+alter table ord
+add check (rate>=100)
+
+alter table ord
+add default 'NA' FOR CS
+
+alter table ord
+add UNIQUE (P_name)
+
+create table abc (id int) 
+
+alter table abc
+alter column id int not null
+
+alter table ABC
+add Primary key (ID)
+
+create table a55(id int)
+
+alter table abc
+add foreign key (id) references abc(id)
+
+select * from ord
+
+truncate table ord
+
+drop table ord
+
+
+DML COMMANDS
+
+insert
+delete
+update
+
+create database DML
+
+use DML
+
+create table D1(sid int, sname varchar(20),age int)
+
+select * from d1
+
+Insert into D1 values (1,'raju',25)
+Insert into D1 (sname,age,sid) values ('naresh',28,2)
+
+insert into d1 (sid,age) values (3,30)
+insert into d1 (sid) values (4)
+insert into d1 (sname) values ('dinesh')
+
+Insert into d1 values(5,'mani',35),(6,'manju',25),(7,'kumar',34)
+
+insert into d1 (sname,age,sid) values ('banu',20,8),('ravi',27,9)
+
+insert into d1(sid,age) values(10,30),(11,35),(12,22)
+
+----how to copy the one table data or other table-----
+
+
+create table d2(sid int,age int,sname varchar(20))
+
+
+insert into D2 (SID,age,sname) select sid,age,sname from D1
+
+select * from d2
+
+create table emp (eid int, ename varchar(20))
+
+insert into emp (eid,ename) select sid,sname from d1
+
+------duplicate the table data-----
+
+select * into emp1 from emp
+
+select * from emp1 where 1=0
+
+
+
+
+
+
