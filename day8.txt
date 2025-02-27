@@ -1,0 +1,79 @@
+create table D1(sid int, sname varchar(20),age int)
+
+select * from d1
+
+Insert into D1 values (1,'raju',25)
+Insert into D1 (sname,age,sid) values ('naresh',28,2)
+
+insert into d1 (sid,age) values (3,30)
+insert into d1 (sid) values (4)
+insert into d1 (sname) values ('dinesh')
+
+Insert into d1 values(5,'mani',35),(6,'manju',25),(7,'kumar',34)
+
+insert into d1 (sname,age,sid) values ('banu',20,8),('ravi',27,9)
+
+insert into d1(sid,age) values(10,30),(11,35),(12,22)
+
+select * into d55 from d1
+
+alter table d1
+add sal money
+
+------update the all rows in a column-----
+
+update d1 set sal=5000
+
+-----update all rows in multi column----
+
+alter table d1
+add gender varchar (20) ,loc varchar (20)
+
+update d1 set gender='m',loc='kkd'
+
+-----update some rows in single column (with condition)
+1) based on same column
+
+update d1 set sname ='Nagesh' where sname is null
+
+------ based on other colums-----
+
+update d1 set loc ='hyd' where sname ='nagesh'
+
+
+update d1 set sal=10000,loc='banglore' where sname = 'mani' or sname = 'manju'
+
+DELETE
+
+-----REMOVE ALL ROWS----
+
+DELETE FROM D55
+
+------REMOVE SOME ROWS WITH SINGLE CONDITION---
+
+DELETE FROM D1 WHERE LOC = 'kkd'
+
+-----remove some rows with multi con----
+
+delete from d1 where sname = 'Nagesh' and age>25
+
+create table t1(id int identity(1,1),name varchar (20))
+
+insert into t1(name) values('a'),('nnn'),('kumar')
+
+create table t2(id int identity(1,1),name varchar (20))
+
+insert into t2(name) values('a'),('nnn'),('kumar')
+
+select * from t1
+select * from t2
+
+select * from t1
+delete from t1
+
+insert into t1 (name) values ('subbu')
+
+select * from t2
+truncate table t2
+
+insert into t2 (name) values ('subbu')
