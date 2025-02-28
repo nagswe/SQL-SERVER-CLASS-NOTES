@@ -1,0 +1,65 @@
+DCL :- DATA CONTROL LANGUAGE
+
+emp -- new user
+
+grant
+revoke
+
+how to create username and password
+
+1) grant :- provide the acess
+
+privileges :- 
+          
+select:- only read the data
+insert:- only insert the data
+delete:- only delete the data
+update
+refrences :- pk and fk
+alter :- change the objects
+all
+
+
+create table emp (eid int primary key, ename varchar(20), age int)
+
+insert into emp values (1,'raju',25),(2,'mani',30),(3,'subbu',30)
+
+grant select on dbo.emp to Nagesh
+
+grant insert on dbo.emp to Nagesh
+
+grant update,delete on dbo.emp to Nagesh
+
+grant all on dbo.emp to Nagesh
+
+revoke all on dbo.emp to Nagesh
+
+create table state_table(sno int, state_id varchar(20),statename varchar(20))
+
+insert into state_table(state_id) values ('tn')
+
+begin tran
+
+insert into state_table(state_id) values ('mi')
+
+commit
+
+rollback
+
+select * from INFORMATION_SCHEMA.TABLES
+WHERE TABLE_NAME='EMP'
+
+
+select * from INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME='EMP'
+
+select * from [INFORMATION_SCHEMA].[CHECK_CONSTRAINTS]
+
+SELECT * FROM [SYS].[COLUMNS]
+
+
+SELECT EMP,EID,ENAME FROM EMP
+
+COLUMN ALIAS
+
+SELECT EID AS EMPLOYEE FROM EMP
