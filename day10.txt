@@ -1,0 +1,77 @@
+
+Operators
+
+Relation oerators
+logical operators
+special
+not special operators
+
+1 relations operators
+=
+<>
+>
+>=
+<
+<=
+
+create database mogodb
+
+---= equal to------
+i want to see the deptno 10 data
+
+select * from emp where deptno =10
+
+i want to see the who are working job as a clerk
+
+select * from emp where job ='clerk'
+
+i want to see the who are joined on 1982-01-23 
+
+select * from emp where hiredate = '1982-01-23'
+
+----not equal to---<> !=---
+
+i dont want to see the who are under deptno=10
+
+select * from emp where deptno<>10
+
+i want to see the who are not working as a clerk
+
+select * from emp where job<>'clerk'
+
+i want to see the who are not joined on 1982-01-23 
+
+select * from emp where hiredate<>'1982-01-23'
+
+select * from emp where sal>10000
+
+select * from emp where sal>=10000
+
+select * from emp where sal<5000
+
+select * from emp where sal<=5000
+
+----logical----
+AND
+
+i want to see the who are working as deptno=10 & their sal is 5000
+
+select * from emp where deptno =10 and sal=5000
+
+i want to see emp data, who are working as a clerk in deptno 10
+
+select * from emp where deptno =10 and job = 'clerk'
+
+or 
+
+select * from emp where deptno =10 or job = 'clerk'
+
+select * from ord where laptop data in ap
+
+select * from ord where product_name = 'laptop' and state_id = 'ap'
+
+select * from ord where product_name = 'laptop' or state_id = 'ap'
+
+select empno,ename,job,sal,deptno from emp where deptno=10 and job='clerk' and sal<5000
+
+select * from emp where not (job='clerk')
