@@ -1,0 +1,71 @@
+IN
+
+select * from emp where deptno in (10,20)
+
+select * from emp where ENAME in ('KIRAN','RAJU','CLERK','KING')
+
+select * from emp where HIREDATE in ('1981-06-09','1981-11-17','2023-01-31')
+
+
+Between range
+
+select * from emp where sal between 1000 and 2000
+
+
+select * from emp where sal between 1300 and 3000
+
+
+select * from emp where ename like 'a%'
+
+select * from emp where ename like 'k%'
+
+
+select * from emp where ename NOT like 'a%'
+
+select * from emp where ename NOT like 'k%'
+
+select * from emp where ename NOT like '%n'
+
+
+select * from emp where ename like '%r%'
+
+select * from emp where ename like '%AN%'
+
+----2ND CHAR----FROM STARTING
+
+select * from emp where ename like '_I%'
+
+select * from emp where ename like '__L%'
+
+FIRST LETTER FROM ENDING 
+
+select * from emp where ename like '%A_'
+
+select * from emp where ename like '%R__'
+
+START WITH J ENDS WITH S
+
+select * from emp where ename like 'J%S'
+
+select * from emp where ename like 'K%N'
+
+UPDATE EMP SET COMM=NULL WHERE COMM=0
+
+
+SELECT * FROM EMP WHERE MGR IS NULL
+
+SELECT * FROM EMP WHERE COMM IS NULL
+
+SELECT * FROM EMP WHERE DEPTNO NOT IN (10,30)
+
+SELECT * FROM EMP WHERE EMPNO BETWEEN 5 AND 15
+
+SELECT * FROM EMP WHERE MGR IS NULL
+
+SELECT ENAME,EMPNO,DEPTNO,COMM,SAL FROM EMP WHERE COMM IS NOT NULL
+
+CREATE TABLE A(ADDRESS NVARCHAR(20))
+
+INSERT INTO A values('ind-ap-tpt'),('ind-ap-vz'),('ind-ts-hyd'),('ind-ka-blr'),('ind-ts-wlr')
+
+select * from a where address like '%ap%'
