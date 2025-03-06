@@ -1,0 +1,91 @@
+-------datepart----
+
+select datepart(yyyy,getdate())
+
+select datepart(mm,getdate())
+
+select datepart(dd,getdate())
+
+select datepart(weekday,getdate())
+
+select datepart(w,getdate())
+
+select datepart(ww,getdate())
+
+select datepart(qq,getdate())
+
+-----datediff---
+
+select datediff(year,'1995-01-01',getdate())
+
+select datediff(day,'1995-01-01',getdate())
+
+select datediff(month,'1995-01-01',getdate())
+
+select datediff(hour,'1995-01-01',getdate())
+
+select *, datediff(year,hiredate,getdate()) from emp
+
+-----getutcdate-----
+
+select GETUTCDATE()
+
+-------DATEADD
+
+SELECT DATEADD(DAY,1,GETDATE())
+
+SELECT DATEADD(YYYY,-1,GETDATE())
+
+SELECT DATEADD(YYYY,1,GETDATE())
+
+-----STRING/TEXT FUNCTIONS----
+
+ASCII : GET THE UNICODE OF CAHR
+
+SELECT ASCII('A')
+
+SELECT ASCII('a')
+
+select ascii('kiran') 
+
+select ascii('z') 
+
+select * from emp where ename like '%k'
+
+select * from emp where ascii(ename) = 75
+
+SELECT CHAR(75)
+
+select * from emp where ascii(ename)=ASCII('K')
+
+SELECT *,ASCII(ENAME) FROM EMP
+ 
+SELECT *, CHAR(ASCII(ENAME)) FROM EMP
+
+SELECT CHARINDEX('A','INDIA',1)
+
+SELECT CHARINDEX('@','VICKY123@GMAIL.COM',1)
+
+SELECT CHARINDEX('A','KIRAN KUMAR',2)
+
+SELECT *, CHARINDEX('@',nageshyedidi20@gmail.com,1) FROM EMP
+
+SELECT CHARINDEX('A','RAMANA',3)
+
+SELECT *, CHARINDEX('A',ENAME,2) FROM EMP
+
+SELECT CHARINDEX('A','RAMANA',CHARINDEX('A','RAMANA',1)+1)
+
+-----CONCATENATE---
+
+RAM KUMAR
+
+SELECT CONCAT('RAM',' ','KUMAR')
+
+10 100 10100
+
+SELECT CONCAT(10,100)
+
+SELECT *,ENAME+' '+ JOB FROM EMP
+
+SELECT *, CONCAT(SAL,COMM) FROM EMP
