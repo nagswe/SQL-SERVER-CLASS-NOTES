@@ -1,0 +1,75 @@
+india 
+
+select left('india',1)
+
+select left('india',2)
+
+select *,left(ename,1) from emp
+
+select *,left(ename,charindex('a',ename,1)) from emp
+
+select *,left(email,charindex('@',email,1)) from emp
+
+select *,left(email,charindex('a',email,1)) from emp where email like '%@%'
+
+select right('india',2)
+
+select *, right(ename,1) from emp
+
+select substring('india',2,3)
+
+select len('mahesh')
+
+select *,len(ename) from emp
+
+select upper('india')
+
+select *,upper(ename) from emp
+
+select *,upper(left(ename,1)) from emp
+
+select lower('india')
+
+select lower(right('india',1))
+
+select upper(left('India',1))
+
+select right('iNDia',4)
+
+select lower('iNDia',4)
+
+select lower(right('india',len('india')-1))
+
+select upper(left('india',len('india')-1))
+
+select '     ravi'
+
+select ltrim('     ravi')
+
+select rtrim('ravi      ')
+
+create table a5(f_name char(10),last_name char(10))
+
+insert into a5 values('ramu','kumar'),('raju','reddy'),('mani','anju')
+
+select *,f_name+last_name as full_name from a6
+
+select *,rtrim(f_name)+' '+last_name as full_name from a5
+
+select 'mani'+space(10)+'kumar'
+
+select replicate('india',5)
+
+select replicate('*',5)
+
+select replace('kiran','a','@')
+
+select *,replace(ename,'a','@') from emp
+
+select reverse (' india')
+
+select datalength('india')
+
+select ename,upper(left(ename,1)),lower(right(ename,len(ename)-1)) from emp
+
+select ename,upper(left(ename,1))+replicate('*',len(ename)-2)+upper(right(ename,1)) from emp
