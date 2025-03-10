@@ -1,0 +1,104 @@
+day16 windows functions
+
+sal>500 -->good
+
+sal<=5000 -> normal
+
+select empno,ename,job,sal,case
+                               when sal>500 then 'good'
+                               else 'normal'
+                               end from emp
+
+-------
+
+create table a28(id int, Gen varchar(20))
+
+insert into a28 values (1,'m'),(2,'f'),(3,'m'),(4,'f')
+
+select * from a28
+
+----- update column gender m-f and f-m
+
+select *, case 
+             when gen='m' then 'f' 
+			 else 'm' 
+			 end 
+			 from a28
+
+------------ condtion3
+
+sal<2000---low sal>2000 to 3000 - normal 3000 to 5000-good
+
+more than 5000-> better
+
+select ename,sal,case
+                   when sal<2000 then 'low'
+                   when sal between 2000 and 3000 then'normal'
+                   when sal 3001>=5000 then "very good'
+                   when sal between 3001 and 5000 then'good'
+                   when sal is null then 'na'
+                   else 'better'
+                   end
+                   from emp order by sal asc
+
+select *, sal+sal*10/100 from emp
+
+------------- condition4
+
+select ename,job,sal, case
+                      when job='manager' then sal *1.20
+                      when job='clerk' then sal*1.10
+                      when job='salesman' then sal*1.05
+                      else sal
+                      end
+                      from emp
+
+
+-------coalesce :- return the first not null values----
+
+select coalesce (null,null,5,null,6,7)
+
+create table a30(pid1 int,pid2 int,pid3 int, sales money)
+
+insert into a30 values (1,null,null,100),(null,2,null,200),(null,null,3,300),(null,4,null,400)
+
+select coalesce (pid1,pid2,pid3) as pid,sales from a30
+
+------isnumeric------
+
+select * from emp
+
+select *,isnumeric(mgr) from emp
+
+select *,isnumeric(mgr) from emp where isnumeric(mgr)=12
+
+-----isdate----
+
+select *,isdate(hiredate) from emp
+
+------isnull---
+
+select 10+null
+select 10*null
+select 10-null
+
+select isnull(1,0)
+
+select isnull(null,0)
+
+select empno,ename,sal,comm,sal+isnull(comm,0) as TL from emp
+select empno,ename,sal,comm,sal+isnull(comm,10) as TL from emp
+
+update emp set comm = null where comm = 0
+
+select user_name()
+
+select system_user
+
+select user_id()
+
+select nullif(10,10)
+
+select nullif(100,10)
+
+select nullif(10,100)
