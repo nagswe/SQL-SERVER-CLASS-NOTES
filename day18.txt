@@ -1,0 +1,149 @@
+----alias-----
+
+select deptno,sum(sal) as tl from emp group by deptno order by tl desc
+
+select * from emp where deptno=10 order by sal asc
+
+select top 1 * from emp order by sal desc
+
+
+select top 5 * from emp where job in('clerk','salesman') order by sal desc
+
+select top 1 deptno,sum(sal) tl from emp where job<>'clerk' group by deptno having sum(sal)>5000 order by sum(sal) desc
+
+select * from emp where day(hiredate)=31
+
+---set operators--------------------
+
+union all : combined all rows in a single result set with duplicate
+Union :- combined all rows in a single result set without duplicate
+intersect :-  only matching record or duplicates record 
+except :- check 1 result values , not matching from 1st
+
+create table s1(id int)
+
+create table s2(id int)
+
+insert into s1 values (1),(2),(3)
+
+insert into s2 values (4),(1),(3),(5)
+
+select * from s1
+union all
+select * from s2
+
+select * from s1
+union 
+select * from s2
+
+select * from s1
+intersect
+select * from s2
+
+select * from s1
+except
+select * from s2
+
+create table s31(id int,name varchar(20))
+
+create table s34(s_id int,name varchar(20))
+
+insert into s3 values (1,'raju'),(3,'naresh'),(1,'raju'),(2,'naresh')
+
+insert into s4 values (1,'raju'),(6,'kishore'),(7,'manu')
+
+select * from s3
+union all
+select * from s4
+
+
+
+select empno,ename,job,sal,deptno into emp_30 from emp where deptno=10
+
+select empno,ename,job,sal,deptno into emp_40 from emp where deptno=20
+
+select empno,ename,job,sal,deptno into emp_other from emp where deptno<>20
+
+select * from emp_other where deptno=10 and job<>'president'
+
+delete from emp_other where deptno=10 and job<>'president'
+
+select * from emp_10
+select * from emp_10
+select * from emp_other
+
+
+select * from emp_30
+union all
+select * from emp_40
+union all
+select * from emp_other1
+
+select * from emp_30
+union 
+select * from emp_40
+union 
+select * from emp_other1
+
+select * from emp_30
+intersect 
+select * from emp_40
+intersect
+select * from emp_other1
+
+insert into emp_40 select * from emp_30 where empno=2
+
+select ename,job from emp_10
+union all
+select ename,job from emp_20
+union all
+select ename,job from emp_other
+
+select ename,job from emp_10
+union
+select ename,job from emp_20
+union 
+select ename,job from emp_other
+
+
+select ename,job from emp_10
+intersect
+select ename,job from emp_20
+intersect
+select ename,job from emp_other
+
+select ename,job from emp_10
+except
+select ename,job from emp_20
+except
+select ename,job from emp_other
+
+------select clause with operators---
+
+select top 5 * from 
+(select * from emp_30
+union all
+select * from emp_40
+union all
+select * from emp_other1) a order by sal desc
+
+select a.job,sum(sal) as t1 from 
+(select * from emp_10
+union all
+select * from emp_20
+union all
+select * from emp_other) a group by a.job
+
+select empno from
+(select * from emp_10
+union all
+select * from emp_20
+union all
+select * from emp_other) as t1
+
+select job,sum(sal) as tl from
+(select * from emp_10
+union all
+select * from emp_20
+union all
+select * from emp_other) as t1 group by job
