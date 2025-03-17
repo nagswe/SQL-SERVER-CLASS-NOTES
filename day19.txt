@@ -1,0 +1,85 @@
+----joins----
+
+create database emp1
+
+create table emp1(empid int ,empname varchar(20),empmobile varchar(30))
+
+insert into emp1 values (1,'ravi',31670),(2,'raju',31671),(3,'madhu',31673)
+
+select * from emp1
+
+create table elocation2(empid int ,emplocation varchar(20),empid int)
+
+insert into elocation2 values (1,'hyderabad',1),(2,'banglore',2),(3,'mumbai',3)
+
+
+select * from emp2 inner join elocation2
+on emp2.empid = elocation2.empid
+
+select emp1.empid,empname,emplocation from emp inner join elocation1
+on emp1.empid = elocation1.empid
+
+insert into emp1 values (4,'subbu',123456)
+
+
+select * from emp2 left outer join elocation2
+on emp2.empid = elocation2.empid
+
+select emp1.empid,empname,emplocation from emp1 left outer join elocation1
+on emp1.empid = elocation1.empid
+
+
+select * from emp1 right outer join elocation1
+on emp1.empid = elocation1.empid
+
+select emp1.empid,empname,emplocation from elocation1 right outer join emp1
+on elocation1.empid = emp1.empid
+
+create database shipments
+
+use shipments
+
+CREATE TABLE OrderShipments (
+    ShipmentID INT PRIMARY KEY,
+    OrderID INT,
+    ShipmentDate DATE,
+    Carrier NVARCHAR(50)
+);
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    OrderDate DATE
+);
+
+INSERT INTO Shipments (shipmentid, orderid, shipmentdate, carrier)
+VALUES 
+    (2, 102, '2024-03-15', 'UPS'),
+    (3, 103, '2024-03-14', 'DHL'),
+    (4, 104, '2024-03-13', 'USPS');
+
+
+select * from ordershipments
+
+select * from orders
+
+insert into orders values (105, 123, '2024-03-06'), (106, 456, '2024-03-07'),(107, 890, '2024-03-08')
+
+
+
+select pname,sum(qty) t_qty from ord group by pname
+
+select st.statename,sum(ord.qty) as t_qty from ord left join st on ord.stateid=st.stateid group by st.statename
+
+
+select st.statename,sum(ord.qty) as t_qty from ord inner join st on ord.stateid=st.stateid group by st.statename
+
+
+select st.statename,sum(ord.qty) as t_qty from ord left join st on ord.stateid=st.stateid where st.statename is null group by st.statename
+
+select st.statename,sum(ord.qty) as t_qty from ord left join st on ord.stateid=st.stateid where st.stateid is null group by st.statename
+
+select st.statename,sum(ord.qty) as t_qty from ord full join st on ord.stateid=st.stateid  group by st.statename
+
+
+select st.statename,sum(ord.qty) as t_qty from ord full join st on ord.stateid=st.stateid where ord.stateid is null or st.stateid is null  group by st.statename
