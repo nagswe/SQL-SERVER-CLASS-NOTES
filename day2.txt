@@ -1,0 +1,76 @@
+use database ordertoday1
+
+
+select * from ord
+left join st  on ord.state_id=st.state_id
+left join person  on ord.state_Id=person.state_id
+
+select ord.oid,ord.pname,st.state_name,person.person_name,ord.qty,ord.rate,ord.order_status  from ord
+left join st on ord.state_id=st.state_id
+left join person on st.state_id=person.state_id
+
+select ord.oid,ord.pname,st.state_name,person.person_name,ord.qty,ord.rate,ord.order_status  from ord
+left join st on ord.state_id=st.state_id
+left join person on st.state_id=person.state_id where ord.order_status='yes'
+
+select ord.oid,ord.pname,st.state_name,person.person_name,ord.qty,ord.rate,ord.order_status  from ord
+left join st on ord.state_id=st.state_id
+left join person on st.state_id=person.state_id where ord.order_status='yes' order by ord.qty desc
+
+-----selfjoin---
+
+empno ename   mgr
+
+1     raju     2
+2     naresh   5
+3     haresh   5
+4     mani     5
+5     kamal    null
+
+select * from emp E left join emp M on E.MGR=M.EMPNO
+
+select E.EMPNO,E.ENAME,E.MGR,M.ENAME AS MNAME from emp E left join emp M on E.MGR=M.EMPNO
+
+
+select empno,ename,job,mid,mname,mjob from emp e left join emp m on e.mgr=m.empno
+
+select E.EMPNO,E.ENAME,E.JOB,E.MGR,M.ENAME AS MNAME,M.JOB AS MJOB from emp E left join emp M on E.MGR=M.EMPNO 
+
+who are working same job manager and employees
+
+select E.EMPNO,E.ENAME,E.JOB,E.MGR,M.ENAME AS MNAME,M.JOB AS MJOB from emp E inner join emp M on E.MGR=M.EMPNO and e.job=m.job
+
+which employee taking sal more than his manager
+ 
+select E.EMPNO,E.ENAME,E.sal,E.MGR,M.ENAME AS MNAME,M.sal AS Msal from emp E inner join emp M on E.MGR=M.EMPNO where e.sal>m.sal
+
+---i want to see which manager_id under emp is more than 3
+
+select mgr,count(empno) as t_emps from emp group by mgr having count(empno)>3
+
+select m.ename as mname,count(e.empno) from emp e inner join emp m on e.mgr=m.empno group by m.ename having count(e.empno)>3
+
+create table team (teamid varchar(20))
+
+insert into team values('mi'),('rcb'),('csk')
+
+select * from team
+
+select * from team teama,team teamb
+
+select * from team a ,team b where a.teamid<>b.teamid
+
+select table sales
+
+DELETE FROM sales 
+WHERE COALESCE (oid, pname, state_id,qty,order_created,order_shipping_date) IS NULL
+
+select * from dates d left join sales s on d.date_id=s.order_created
+
+select * from dates d left join sales s on d.date_id=s.order_created left join sales dl on d.date_id=dl.order_shipping_date
+
+select d.date_id from dates d left join sales s on d.date_id=s.order_created left join sales dl on d.date_id=dl.order_shipping_date
+
+select * d.date_id,count(s.oid) as total_order,count(dl.oid) as total_dl_orders from dates d left join sales s on d.date_id=s.order_created left join sales dl on d.date_id=dl.order_shipping_date group by d.date_id
+
+select * from emp where mgr not in (select oid from sales)
