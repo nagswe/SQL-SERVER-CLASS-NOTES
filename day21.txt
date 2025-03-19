@@ -1,0 +1,66 @@
+select * from information_schema.tables
+
+select * from ord
+
+
+select * from ord o inner join st s on o.state_id=s.state_id where s.state_name='Andhra pradesh'
+
+select count(order_id) from ord where state_id=( select state_id from st where state_name='Andhra pradesh')
+
+select s.state_name,count(o.oid) from ord o left join st s on o.state_id = s.state_id group by s.state_name
+
+select * from ord where state_id in ( select state_id from st where state_name<>'Andhra pradesh')
+
+select * from emp
+
+select max(sal) from emp
+
+select top 1 * from emp order by sal desc
+
+update emp set sal=20000 where empno=3
+
+select * from emp where sal=(select max(sal) from emp)
+
+select max(sal) from emp where sal < (select max(sal) from emp)
+
+select max(sal) from emp where sal < (select max(sal) from emp  where sal < (select max(sal) from emp))
+
+select * from emp where sal = ( select min(sal) from emp)
+
+SELECT sal FROM emp ORDER BY sal DESC;
+
+select * from emp e1 where 1 = (select count(distinct sal) from emp e2 where e1.sal<=e2.sal)
+
+select * from emp e1 where 5 = (select count(distinct sal) from emp e2 where e1.sal<=e2.sal)
+
+select * from emp e1 where 2 = (select count(distinct sal) from emp e2 where e1.sal<=e2.sal)
+
+select * from emp e1,emp e2 where e1.sal<>e2.sal
+
+select empno,ename,sal into emp1 from emp where deptno=10
+
+select * from emp1 e1,emp1 e2
+
+select * from emp1 e1,emp1 e2 where e1.sal=e2.sal
+
+select * from emp1 e1,emp1 e2 where e1.sal<e2.sal
+
+select distinct e2.sal from emp1 e1,emp1 e2 where e1.sal<=e2.sal
+
+select * from emp1 e1 where 1 = (select count(distinct e2.sal) from emp1 e2 where e1.sal<=e2.sal)
+
+-----highest qty in table---
+
+
+select * from ord o1 where 1 = (select count(distinct qty) from ord o2 where o1.qty<=o2.qty)
+
+select * from ord where state_id = (select state_id from person where person_name ='kiran')
+
+
+select * from ord where state_id in (select state_id from person where person_name ='kiran')
+
+select max(qty) from ord where state_id = 'ap'
+
+select * from ord where qty>(select max(qty) from ord where state_id = 'ap')
+
+select * from ord where qty>=(select max(qty) from ord where state_id = 'ap')
