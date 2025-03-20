@@ -1,0 +1,96 @@
+select empno,ename,sal from emp
+
+select * from emp1
+union all
+select empno,ename,sal from emp
+
+---join---
+
+select e.empno,e.ename,e.job,e.deptno,d.dname,d.loc from emp e left join dept d on e.deptno=d.dept_no
+
+-----empty table---
+select * into emp5 from emp1 where 1<>1
+
+insert into emp19 (empno,ename,sal) select empno,ename,sal from emp
+
+truncate table emp19
+
+insert into emp19 (empno,ename,sal) select empno,ename,sal from emp where deptno =10
+
+----how to insert data by using subquery---
+
+update dept set loc='NEW YORK' where loc='CHICAGO'
+
+select empno as EID,ename,job,sal,deptno as did into emp20 from emp where 1<>1
+
+select * from emp20
+
+insert into emp20 (eid,ename,job,sal,did) select empno,ename,job,sal,deptno from emp
+
+--- i want to insert data from emp to emp6,which employee contains new York loc--
+
+
+truncate table emp20
+
+select * from emp where deptno in(select dept_no from dept where loc='new york')
+
+insert into emp20 (eid,ename,job,sal,did) select empno,ename,job,sal,deptno from emp where deptno in (select dept_no from dept where loc = 'new york')
+
+select avg(sal) from emp
+
+--- i want to copy data from emp to emp7,which employee taking sal is morethan avg(sal)
+
+select * into emp21 from emp where 1>1
+
+----- which employee taking sal is more than avg(sal)
+
+select * from emp where sal >(select avg(sal) from emp)
+
+insert into emp21 select * from emp where sal >(select avg(sal) from emp)
+
+---- i want to increment the sal 10% which employee under dname sales
+
+select * from emp where deptno in (select deptno from dept where dname ='sales')
+
+update emp set sal=sal*1.10 where deptno in(select deptno from dept where dname ='sales')
+
+---- update data, which employee sal is less than avg sal ,their sal is sal+1000
+
+select * from emp where sal <(select avg(sal) from emp)
+
+update emp set sal=sal+1000 where sal<(select avg(sal) from emp)
+
+---i want to remove data from emp---
+-----which employee taking sal is less than the avg(sal) in deptno 30
+
+
+select * from emp where sal<(select avg(sal) from emp where deptno =30)
+
+delete from emp where sal<(select avg(sal) from emp where deptno =30)
+
+-----i want to remove data from emp--
+---- which employee contains the loc is new york---
+
+select * from dept where loc = 'new york'
+
+select * from emp where deptno in(select deptno from dept where loc = 'new york')
+
+delete from emp where deptno not in (select deptno from dept where loc = 'new york')
+
+---- i want to remove data from emp7
+--- sal is 9000 to 18000
+
+delete from emp21 where sal between 9000 and 18000
+
+----- i want to delete data from emp3
+---- which employee taking sal is more than or equal to avg(sal) in deptno 30
+--- to less than or equal to avg(sal) in deptno 20
+
+select avg(sal) from emp where deptno =30
+
+select avg(sal) from emp where deptno =20
+
+select * from emp where sal between 3500 and 10000
+
+
+select * from emp where sal between (select avg(sal) from emp where deptno =30) and (select avg(sal) from emp where deptno =20)
