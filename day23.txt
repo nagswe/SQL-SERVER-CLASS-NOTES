@@ -1,0 +1,163 @@
+select empno,ename,job,sal,deptno into e1 from emp where 1<>1
+
+insert into e1 (empno,ename,job,sal,deptno) select empno,ename,job,sal,deptno from emp where deptno =10
+
+insert into e1 (empno,ename,job,sal,deptno) select empno,ename,job,sal,deptno from emp where deptno =20
+
+insert into e1 (empno,ename,job,sal,deptno) select empno,ename,job,sal,deptno from emp where deptno =30
+
+create clustered index cls_i1 on e1(empno,sal)
+
+select empno,sal from e1
+
+create table a1(id int primary key,name varchar(20))
+
+create clustered index cls_i2 on a1(name)
+
+---how to remove the index in table---
+
+drop index [cls_i1] on e1
+
+--- non clustered index----
+
+create nonclustered index nclus_t1 on e1(sal,empno)
+
+create unique index uclus_i2 on e1(empno)
+
+drop index [clus_i3] on e1
+
+drop index [nclus_i1] on e1
+
+drop index [uclus_i2] on e1
+
+upload table sales
+
+create clustered index sales_cls_index1 on data(orderdate)
+
+function 1
+-----------
+
+create function t_amount_f (@qty float,@rate money)
+returns money
+begin
+   return @qty*@rate
+end
+
+select dbo.t_amount_f (10,5)
+
+select * from ord
+
+select oid,qty,rate, dbo.t_amount_f(qty,rate) as t_amount from ord
+
+select upper(left('KIRAN',1))+lower(right('KIRAN',len('KIRAN')-1))
+
+function 2
+----------
+
+create function camelcase_sf( @name varchar(100))
+returns varchar(100)
+as
+begin
+return upper(left(@name,1))+lower(right(@name,len(@name)-1))
+end
+
+
+select dbo.camelcase_sf('mniGYUNm')
+
+select ename,dbo.camelcase_sf31(ename) from emp
+
+select * from emp
+
+select empno,ename,job,sal,deptno from emp
+
+function 3
+----------
+
+create function getemp_info()
+returns table
+as
+return (select empno,ename,job,sal,deptno from emp)
+
+select * from [dbo].[getemp_info]()
+
+function 4
+----------
+
+-----udf in table value function with parameter--
+
+create function getinfo_of_emp_based_on_thedeptno (@deptno int)
+returns table
+as
+return (select empno,ename,job,sal,deptno from emp where deptno =@deptno)
+
+select * from [dbo].[getinfo_of_emp_based_on_thedeptno](30)
+
+select job, sum(sal) from [dbo].[getinfo_of_emp_based_on_thedeptno](30) group by job
+
+
+function 6
+----------
+
+CREATE FUNCTION dbo.GetFullName (@FirstName VARCHAR(50), @LastName VARCHAR(50))
+RETURNS VARCHAR(100)
+AS
+BEGIN
+    RETURN @FirstName + ' ' + @LastName
+END
+
+SELECT dbo.GetFullName('Nagesh', 'yedidi') AS FullName;
+
+function 7
+----------
+
+
+CREATE FUNCTION dbo.GetEmployeesByDepartment(@Deptno INT)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT empno, job, comm
+    FROM Emp
+    WHERE Deptno = @Deptno
+)
+
+select * from emp
+
+SELECT * FROM dbo.GetEmployeesByDepartment(10)
+
+function 8
+----------
+
+
+CREATE FUNCTION dbo.GetTopEmployees(@TopN INT)
+RETURNS @TopEmployees TABLE (EmployeeID INT, FullName VARCHAR(100))
+AS
+BEGIN
+    INSERT INTO @TopEmployees
+    SELECT TOP (@TopN) EmployeeID, FirstName + ' ' + LastName
+    FROM Employees
+    ORDER BY Salary DESC
+
+    RETURN
+END
+
+SELECT * FROM dbo.GetTopEmployees(5);
+
+function 9
+-----------
+
+
+CREATE FUNCTION dbo.ConcatenateNames (@DepartmentID INT)
+RETURNS VARCHAR(MAX)
+AS
+BEGIN
+    DECLARE @Names VARCHAR(MAX) = '';
+
+    SELECT @Names = STRING_AGG(FirstName, ', ')
+    FROM Employees
+    WHERE DepartmentID = @DepartmentID;
+
+    RETURN @Names;
+END
+
+SELECT dbo.ConcatenateNames(3) AS EmployeeNames;
