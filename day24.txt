@@ -1,0 +1,172 @@
+
+create clustered index sales_cls_index1 on data(orderdate)
+
+function 1
+-----------
+
+create function totalamount (@qty float,@rate money)
+returns money
+begin
+   return @qty*@rate
+end
+
+select dbo.totalamount (10,5)
+
+function 2
+----------
+
+select * from ord
+
+select oid,qty,rate, dbo.totalamount(qty,rate) as totalamount from ord
+
+select upper(left('KIRAN',1))+lower(right('KIRAN',len('KIRAN')-1))
+
+
+create function function2( @name varchar(100))
+returns varchar(100)
+as
+begin
+return upper(left(@name,1))+lower(right(@name,len(@name)-1))
+end
+
+
+select dbo.function2('NAGESH')
+
+select ename,dbo.function2(ename) from emp
+
+select * from emp
+
+select empno,ename,job,sal,deptno from emp
+
+function 3
+----------
+
+create function function3()
+returns table
+as
+return (select empno,ename,job,sal,deptno from emp)
+
+select * from [dbo].[getemp_info]()
+
+function 4
+----------
+
+-----udf in table value function with parameter--
+
+create function getinfo_of_emp_based_on_thedeptno (@deptno int)
+returns table
+as
+return (select empno,ename,job,sal,deptno from emp where deptno =@deptno)
+
+select * from [dbo].[getinfo_of_emp_based_on_thedeptno](30)
+
+select job, sum(sal) from [dbo].[getinfo_of_emp_based_on_thedeptno](30) group by job
+
+
+function 5
+----------
+
+CREATE FUNCTION dbo.GetFullName (@FirstName VARCHAR(50), @LastName VARCHAR(50))
+RETURNS VARCHAR(100)
+AS
+BEGIN
+    RETURN @FirstName + ' ' + @LastName
+END
+
+SELECT dbo.GetFullName1('Nagesh', 'yedidi') AS FullName;
+
+function 6
+----------
+
+
+CREATE FUNCTION dbo.GetEmployeesByDepartment(@Deptno INT)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT empno, job, comm
+    FROM Emp
+    WHERE Deptno = @Deptno
+)
+
+select * from emp
+
+SELECT * FROM dbo.GetEmployeesByDepartment(10)
+
+function 7
+----------
+
+use ordertoday1
+
+CREATE TABLE Employee (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Position VARCHAR(50),
+    Department VARCHAR(50),
+    Salary DECIMAL(10,2),
+    HireDate DATE
+);
+
+INSERT INTO Employee (EmployeeID, FirstName, LastName, Position, Department, Salary, HireDate) VALUES
+(1, 'John', 'Doe', 'Software Engineer', 'IT', 75000.00, '2020-06-15'),
+(2, 'Jane', 'Smith', 'Project Manager', 'Operations', 85000.00, '2018-04-22'),
+(3, 'Emily', 'Johnson', 'HR Specialist', 'Human Resources', 60000.00, '2019-09-10'),
+(4, 'Michael', 'Brown', 'Data Analyst', 'Finance', 70000.00, '2021-01-05'),
+(5, 'Sarah', 'Wilson', 'Marketing Manager', 'Marketing', 78000.00, '2017-03-18');
+
+SELECT * FROM Employee;
+
+
+CREATE FUNCTION dbo.GetTopEmployee(@TopN INT)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT TOP (@TopN) 
+        EmployeeID, 
+        COALESCE(FirstName, '') + ' ' + COALESCE(LastName, '') AS FullName
+    FROM Employee
+    ORDER BY Salary DESC
+);
+
+SELECT * FROM dbo.GetTopEmployee(5);
+
+
+function 8
+-----------
+
+
+
+CREATE TABLE Employee (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(100),
+    LastName VARCHAR(100),
+    DepartmentID INT
+);
+
+
+INSERT INTO Employee (EmployeeID, FirstName, LastName, DepartmentID) 
+VALUES 
+    (1, 'John', 'Doe', 3),
+    (2, 'Jane', 'Smith', 3),
+    (3, 'Alice', 'Johnson', 3),
+    (4, 'Bob', 'Brown', 2),
+    (5, 'Charlie', 'Davis', 1);
+
+
+CREATE FUNCTION dbo.ConcatenateNames (@DepartmentID INT)
+RETURNS VARCHAR(MAX)
+AS
+BEGIN
+    DECLARE @Names VARCHAR(MAX) = '';
+
+    SELECT @Names = STRING_AGG(FirstName, ', ')
+    FROM Employee
+    WHERE DepartmentID = @DepartmentID;
+
+    RETURN @Names;
+END;
+
+
+SELECT dbo.ConcatenateNames(3) AS EmployeeNames;
