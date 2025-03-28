@@ -1,0 +1,140 @@
+create proc ord_sp2 (@sid varchar(50),@pname varchar(50),
+@to int output,@tq float output,@ts money output)
+as
+begin
+select * from ord where state_id=@sid and pname=@pname
+select @to=count(oid),@tq=sum(qty),@ts=sum(ta) from ord where state_id=@sid
+end
+
+declare @to1 int,@tq1 float,@ts1 money
+exec ord_sp2
+          @sid='ap',
+          @pname='mobile',
+          @to=@to1 output,
+          @tq=@tq1 output,
+          @ts=@ts1 output
+
+select @to1 as 't_orders',@tq1 as 't_aty',@ts1 as 't_sales'
+
+create table s58(id int,sname varchar(20),age int)
+
+insert into s58(id,sname,age) values (1,'raju',25)
+
+select * from s58
+
+create proc insertdatas58(@id int,@name varchar(20),@age int)
+as
+begin
+insert into s58(id,sname,age) values (@id,@name,@age)
+select * from s58
+end
+
+exec insertdatas58 9,'ravi',18
+
+alter proc insertdatas58(@id int,@age int)
+as
+begin
+insert into s58(id,age) values (@id,@age)
+select * from s58
+end
+
+exec insertdatas58 5,25
+
+
+-----------update data using sp-----
+
+update s58 set sname='raju kumar' where sname = 'raju'
+select * from s58
+
+create proc update_data_in_s58(@old_values varchar(20),@new_values varchar(20))
+as
+begin
+update s58 set sname=@new_values where sname=@old_values
+select * from s58
+end
+
+exec update_data_in_s58 'ravi','kavitha'
+
+create proc delete_from_s58table (@id int)
+as
+begin
+delete from s58 where id=@id
+select * from s58
+end
+
+exec delete_from_s58table 1
+
+create table a1(id int)
+
+select * from a1
+
+insert into a1 values (1),(2)
+
+create proc id (@id int)
+as
+begin
+insert into a2 (id) values(@id)
+update a1 set id=id*10 where id=@id
+delete from a1 where id=@id-1
+select * from a2
+end
+
+exec id 31
+
+create table t1 (empno int ,ename varchar(20),job varchar(20),deptno int)
+
+insert into t1 (empno,ename,job,deptno) select empno,ename,job,deptno from emp
+
+create table t2 (empno int,ename varchar(20))
+
+insert into t2 (empno,ename) select empno,ename from emp
+
+create proc movedata (@empno int)
+as
+begin
+insert into t5 select empno,ename from t3 where empno=@empno
+delete from t1 where empno=@empno
+select * from t3
+select * from t4
+end
+
+exec movedata 5
+
+alter table t2
+add inser_date datetime
+
+alter proc move_data_from_ot_nw (@empno int)
+as
+begin
+insert into t2(empno,ename,inser_date) select empno,ename,getdate() from t1
+delete from t1 where empno=@empno
+select * from t1
+select * from t2
+end
+
+exec move_data_from_ot_nw 7
+
+
+select * into t56 from emp
+
+create view t56_v
+as
+(select * from t56)
+
+create function t56_f ()
+returns table
+as
+return (select * from t56)
+
+create proc t56_sp
+as
+begin
+select * from t56
+end
+
+select * from t56_v
+
+select * from t56_f()
+
+exec t56_sp
+
