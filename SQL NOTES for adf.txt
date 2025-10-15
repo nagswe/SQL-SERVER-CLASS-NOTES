@@ -1,0 +1,362 @@
+-------------SQL NOTES------------------
+
+
+CREATE DATABASE TRAINING
+
+USE TRAINING
+
+DROP DATABASE TRAINING
+
+CREATE TABLE EMPLOYEES (EMPLOYEEID INT,EMPLOYEENAME VARCHAR(100))
+
+DROP TABLE EMPLOYEES
+
+CREATE TABLE EMPLOYEES(
+EMPLOYEEID INT,
+EMPLOYEENAME VARCHAR(100),
+DOJ DATETIME,
+SALARY FLOAT)
+
+select * from employees
+
+insert into employees values(1,'john','2023-01-14',40000)
+
+insert into employees (EMPLOYEEID,EMPLOYEENAME,DOJ,SALARY)values(2,'banu','2022-01-14',30000)
+
+insert into employees (EMPLOYEEID,EMPLOYEENAME,DOJ,SALARY)values(3,'priya','2022-01-14',50000)
+
+insert into employees (EMPLOYEEID,EMPLOYEENAME,DOJ,SALARY)values(4,'mahesh','2022-01-14',60000)
+
+insert into employees (EMPLOYEEID,EMPLOYEENAME,DOJ,SALARY)values (5,'ganesh','2022-01-14',60000),(6,'nagesh','2022-01-14',60000),(7,'ankit','2022-01-14',60000)
+
+select * from employees
+
+select employeeid,employeename,salary from employees
+
+select employeename,salary,employeeid from employees
+
+select employeename from employees
+
+install adventuireworksampledb
+
+use AdventureWorksDW
+
+select * from dimproduct
+
+select color from dimproduct
+
+select distinct color from dimproduct
+
+select color,listprice from dimproduct
+
+select distinct color,listprice from dimproduct
+
+select distinct * from dimproduct
+
+select * from dimproduct
+order by color 
+
+select * from dimproduct
+order by color asc
+
+select * from dimproduct
+order by color desc
+
+select productkey,englishproductname,color,listprice from dimproduct
+order by listprice desc
+
+select productkey,englishproductname,color,listprice from dimproduct
+order by color,listprice
+
+select productkey,englishproductname,color,listprice from dimproduct
+order by color,listprice desc
+
+select productkey,englishproductname,color,listprice from dimproduct
+order by color desc,listprice desc
+
+select productkey,englishproductname,color,listprice from dimproduct
+order by 1
+
+select productkey,englishproductname,color,listprice from dimproduct
+order by 1 desc
+
+select productkey,englishproductname,color,listprice from dimproduct
+order by 3 
+
+select productkey,englishproductname,color,listprice from dimproduct
+order by 3,4
+
+----comments--
+
+--select * from dimproduct
+
+select distinct color from dimproduct 
+
+/*
+select distinct color from dimproduct
+select distinct color from dimproduct
+*/
+
+---comparison operators-- =,>,>=,<,<=,<>
+
+select * from dimproduct
+where listprice = 3399.99
+
+select * from dimproduct
+where listprice <= 3399.99
+
+select * from dimproduct
+where listprice <> 3399.99
+
+select * from dimproduct
+where color = 'red' or color='silver'
+
+select * from dimproduct
+where color = 'red' and color='silver'
+
+select * from dimproduct
+where color = 'red' or color='silver' or color='white' order by color
+
+select * from dimproduct
+where color in('red','silver')
+
+select * from dimproduct
+where color = 'red' and listprice >1000
+
+select * from dimproduct
+where color = 'red' or  listprice >1000
+
+select * from dimproduct
+where color in('red','silver') and listprice>2000
+
+select * from dimproduct
+where listprice >=1000 and listprice <=2000
+
+select * from dimproduct
+where listprice >=1000 or listprice <=2000
+
+select * from dimproduct
+where englishproductname like 'a%'
+
+select * from dimproduct
+where englishproductname like 'aw%'
+
+select * from dimproduct
+where productkey like '4%'
+
+select * from dimproduct
+where englishproductname like '%e'
+
+select * from dimproduct
+where englishproductname like '%ce'
+
+select * from dimproduct
+where englishproductname like '%a%'
+
+select * from dimproduct
+where englishproductname like 'a_c%'
+
+day2
+
+----aggregated functions---
+
+select * from FactInternetSales
+
+select SalesAmount from FactInternetSales
+
+select sum(SalesAmount) from FactInternetSales
+
+select avg(SalesAmount) from FactInternetSales
+
+select min(SalesAmount) from FactInternetSales
+
+select max(SalesAmount) from FactInternetSales
+
+select sum(SalesAmount) as totalsales from FactInternetSales
+
+select sum(SalesAmount)  totalsales from FactInternetSales
+
+select sum(SalesAmount)  as totalsales,
+avg(SalesAmount)  as avgsales
+from FactInternetSales
+
+select count(*) from DimProduct
+
+select COUNT(listprice) from dimproduct
+
+select count(*) from DimProduct
+where listprice is not null
+
+select count(*) from DimProduct
+where listprice is null
+
+select * from DimProduct
+where listprice is not null
+
+select * from DimProduct
+where listprice is null
+
+select productkey,salesamount from FactInternetSales
+
+select distinct productkey from FactInternetSales
+
+select productkey, sum(salesamount) totalsales from FactInternetSales
+group by ProductKey
+
+select productkey,customerkey,sum(salesamount) totalsales from FactInternetSales
+group by ProductKey,customerkey
+
+select productkey,sum(salesamount) totalsales,avg(salesamount) avgsales from FactInternetSales
+group by ProductKey,customerkey
+
+select * from dimproduct
+
+select * into dimproduct_bk from dimproduct
+
+select * into dimproduct_bk3 from dimproduct
+where color = 'red'
+
+select productkey,listprice,englishproductname into dimproduct_bk4 from dimproduct
+
+---primary--key-- primarykey doesnot except null values
+
+CREATE TABLE EMPLOYEES(
+EMPLOYEEID INT,
+EMPLOYEENAME VARCHAR(100),
+DOJ DATETIME,
+SALARY FLOAT)
+
+insert into employees values(1,'john','2023-01-14',40000)
+
+insert into employees values(1,'jack','2023-01-14',40000)
+
+CREATE TABLE EMPLOYEES_new(
+EMPLOYEEID INT primary key,
+EMPLOYEENAME VARCHAR(100),
+DOJ DATETIME,
+SALARY FLOAT)
+
+insert into employees_new values(1,'john','2023-01-14',40000)
+
+insert into employees_new values(1,'jack','2023-01-14',40000)
+
+insert into employees_new values(null,'jack','2023-01-14',40000)
+
+insert into employees_new values(2,null,'2023-01-14',40000)
+
+CREATE TABLE EMPLOYEES2(
+EMPLOYEEID INT primary key,
+EMPLOYEENAME VARCHAR(100) not null,
+DOJ DATETIME not null,
+SALARY FLOAT not null,)
+
+insert into employees2 values(1,'john','2023-01-14',40000)
+
+insert into employees2 values(2,null,'2023-01-14',40000)
+
+----uniquekey-- uniquekey accept only one null values
+
+CREATE TABLE EMPLOYEES3(
+EMPLOYEEID INT primary key,
+EMPLOYEENAME VARCHAR(100),
+DOJ DATETIME,
+SALARY FLOAT,email varchar(100) unique)
+
+
+insert into employees3(EMPLOYEEID,EMPLOYEENAME,DOJ,SALARY,email) values(1,'john','2023-01-14',40000,'jack123@gmail.com')
+
+insert into employees3(EMPLOYEEID,EMPLOYEENAME,DOJ,SALARY,email) values(2,'jack','2023-01-14',30000,null)
+
+CREATE TABLE EMPLOYEES3(
+EMPLOYEEID INT primary key,
+EMPLOYEENAME VARCHAR(100),
+DOJ DATETIME,
+SALARY FLOAT,email varchar(100) unique not null)
+
+----checkconstraint---
+
+CREATE TABLE EMPLOYEES4(
+EMPLOYEEID INT,
+EMPLOYEENAME VARCHAR(100),
+DOJ DATETIME,
+SALARY FLOAT,check(salary>=10000))
+
+CREATE TABLE EMPLOYEES6(
+EMPLOYEEID INT,
+EMPLOYEENAME VARCHAR(100),
+DOJ DATETIME,
+SALARY FLOAT,check(salary>=10000),
+gender char(1) check(gender = 'm' or gender = 'f' or gender = 'o'))
+
+or
+
+CREATE TABLE EMPLOYEES6(
+EMPLOYEEID INT,
+EMPLOYEENAME VARCHAR(100),
+DOJ DATETIME,
+SALARY FLOAT,check(salary>=10000),
+gender char(1) check(gender in('m','f','o')))
+
+-----defaultconstraint---
+
+CREATE TABLE EMPLOYEES7(
+EMPLOYEEID INT,
+EMPLOYEENAME VARCHAR(100),
+DOJ DATETIME,
+SALARY FLOAT,city varchar(30) default 'london')
+
+-----autoincrement----
+
+CREATE TABLE EMPLOYEES_autoincrement(
+EMPLOYEEID INT identity(1,1),
+EMPLOYEENAME VARCHAR(100),
+DOJ DATETIME,
+SALARY FLOAT)
+
+
+insert into EMPLOYEES_autoincrement values ('john','2023-01-14',40000)
+
+insert into EMPLOYEES_autoincrement values ('jack','2023-01-14',30000)
+
+----updaterowsintable-----
+
+select * from dimproduct_bk3
+
+update dimproduct_bk set color = 'no color'
+
+select * into dimproduct_bk3 from dimproduct
+
+update dimproduct_bk set color = 'no color'
+where color = 'na'
+
+
+update dimproduct_bk3 set color = 'red-high',standardcost = 1000
+where color = 'red' and listprice>3000
+
+update dimproduct_bk3 set listprice = listprice * 1.1
+
+------deleterow-----
+
+select * from dimproduct_bk3
+
+delete from dimproduct_bk3
+
+
+delete from dimproduct_bk3
+where color = 'red'
+
+truncate table dimproduct_bk3
+where color = 'red'
+
+delete from EMPLOYEES_autoincrement
+where employeeid = 2
+
+
+
+
+
+
+
+
+ 
+
