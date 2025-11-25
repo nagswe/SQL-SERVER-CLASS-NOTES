@@ -632,9 +632,230 @@ insert into a6 (sales) values (100)
 
 
 
+day6
 
+create database jn
+
+use jn
+
+create table salestran(
+productid int,
+invoicenum varchar(10),
+qty int,
+sales money)
+
+insert into salestran (productid,invoicenum,qty,sales) values (1,90692,10,3000)
+insert into salestran (productid,invoicenum,qty,sales) values (2,90693,8,5000)
+insert into salestran (productid,invoicenum,qty,sales) values (3,90694,9,3000)
+insert into salestran (productid,invoicenum,qty,sales) values (4,90695,7,2000)
+insert into salestran (productid,invoicenum,qty,sales) values (5,90696,6,6000)
+insert into salestran (productid,invoicenum,qty,sales) values (6,90697,5,4000)
+
+create table products(productid int,productname varchar(50),unitprice money)
+
+insert into products(productid,productname,unitprice) values(1,'abc logo cap',300)
+insert into products(productid,productname,unitprice) values(2,'ball bering',500)
+insert into products(productid,productname,unitprice) values(3,'bell',600)
+insert into products(productid,productname,unitprice) values(4,'trousers',700)
+insert into products(productid,productname,unitprice) values(5,'sheet',600)
+
+select * from slestrn
+
+select * from product
+
+select * from salestrn,products
+
+select * from salestrn join products
+on salestrn.productid = products.productid
+
+select * from salestrn inner join products
+on salestrn.productid = products.productid
+
+select * from salestrn as s inner join products as p
+on s.productid = p.productid
+
+select s.* from salestrn as s inner join products as p
+on s.productid = p.productid
+
+select p.* from salestrn as s inner join products as p
+on s.productid = p.productid
+
+select p.productid,p.productnme,s.invoicenum,s.qty,s.sales from salestrn as s inner join products as p
+on s.productid = p.productid
+
+select * from salestrn left join products
+on salestrn.productid = products.productid
+
+select * from products  left join salestrn
+on salestrn.productid = products.productid
+
+select * from products  right join salestrn
+on salestrn.productid = products.productid
+
+select p.productkey,p.englishproductname,f.salesamount from dimproduct p join factinternetsales f on p.productkey = f.productkey
+
+
+select p.productkey,p.englishproductname,f.salesamount from dimproduct p left join factinternetsales f on p.productkey = f.productkey
+
+
+select p.productkey,p.englishproductname,f.salesamount from dimproduct p left join factinternetsales f on p.productkey = f.productkey
+where f.productkey is null
+
+select p.englishproductname,sum(f.salesamount) totlsles from dimproduct p join factinternetsales f on p.productkey = f.productkey
+group by p.englishproductname
+
+select * from dimproduct
+select * from dimcustomer
+select * from factinternetsales
+
+select c.firstname,p.englishproductname,f.salesamount from dimproduct p join factinternetsales f on p.productkey = f.productkey
+join dimcustomer c on f.customerkey = c.customerkey
+
+select c.firstname,p.englishproductname,sum (f.salesamount) from dimproduct p join factinternetsales f on p.productkey = f.productkey
+join dimcustomer c on f.customerkey = c.customerkey group by c.firstname,p.englishproductname
+
+dy7
+
+select * from salestran left join products
+on salestran.productid = products.productid
+
+select * from salestran left outer join products
+on salestran.productid = products.productid
+
+select * from salestran s right join products p
+on p.productid = s.productid
+
+select * from salestran s right outer join products p
+on p.productid = s.productid
+
+select * from salestran s full outer join products p
+on p.productid = s.productid
+
+select productkey,EnglishProductName,color from dimproduct
+
+select iif(10=11,1,0)
+
+select ProductKey,englishproductname,color,IIF(COLOR = 'RED','RD','Na') from dimproduct
+
+select ProductKey,englishproductname,color,IIF(COLOR = 'RED','RD',IIF(COLOR = 'SILVER','SL','Na')) C from dimproduct
+
+SELECT PRODUCTKEY,ENGLISHPRODUCTNAME,LISTPRICE,IIF(LISTPRICE>3000,'HIGH',IIF(LISTPRICE>2000,'AVG','LOW')) CTEGORY FROM DIMPRODUCT
+
+SELECT PRODUCTKEY,ENGLISHPRODUCTNAME,color,LISTPRICE,
+IIF(COLOR ='RED' AND LISTPRICE>=3000,'RED-3K',
+IIF(COLOR ='RED' AND LISTPRICE>=2000,'RED-2K',
+IIF(COLOR ='RED','RD-<2K',
+IIF(COLOR ='SILVER' AND LISTPRICE>=3000,'SL-3K',
+IIF(COLOR ='SILVER' AND LISTPRICE>=2000,'SL-2K',
+IIF(COLOR ='SILVER','SL-<2K','NA')))))) FROM DIMPRODUCT
+
+SELECT 
+    PRODUCTKEY,
+    ENGLISHPRODUCTNAME,
+    COLOR,
+    LISTPRICE,
+    CASE
+        WHEN COLOR = 'RED' AND LISTPRICE >= 3000 THEN 'RED-3K'
+        WHEN COLOR = 'RED' AND LISTPRICE >= 2000 THEN 'RED-2K'
+        WHEN COLOR = 'RED' THEN 'RED-<2K'
+        WHEN COLOR = 'SILVER' AND LISTPRICE >= 3000 THEN 'SL-3K'
+        WHEN COLOR = 'SILVER' AND LISTPRICE >= 2000 THEN 'SL-2K'
+        WHEN COLOR = 'SILVER' THEN 'SL-<2K'
+        ELSE 'NA'
+    END AS PRICE_CATEGORY
+FROM DIMPRODUCT;
+
+SELECT EMPLOYEEKEY,FIRSTNAME,DEPARTMENTNAME FROM DIMEMPLOYEE ORDER BY DEPARTMENTNAME DESC
+
+SELECT DISTINCT DEPARTMENTNAME FROM DIMEMPLOYEE
+ORDER BY DEPARTMENTNAME
+
+SELECT EMPLOYEEKEY,FIRSTNAME,DEPARTMENTNAME,
+CASE DEPARTMENTNAME
+            WHEN 'SALES' THEN 1
+            WHEN 'FINANCE' THEN 2
+            WHEN 'ENGINEERING' THEN 3
+            WHEN 'MARKETING' THEN 4
+            ELSE 5
+END CATEGORY
+FROM DIMEMPLOYEE
+
+SELECT EMPLOYEEKEY,FIRSTNAME,DEPARTMENTNAME from dimemployee
+ORDER BY CASE DEPARTMENTNAME
+            WHEN 'SALES' THEN 1
+            WHEN 'FINANCE' THEN 2
+            WHEN 'ENGINEERING' THEN 3
+            WHEN 'MARKETING' THEN 4
+            ELSE 5
+          END 
+
+
+SELECT EMPLOYEEKEY,FIRSTNAME,DEPARTMENTNAME from dimemployee
+ORDER BY CASE DEPARTMENTNAME
+            WHEN 'SALES' THEN 1
+            WHEN 'FINANCE' THEN 2
+            WHEN 'ENGINEERING' THEN 3
+            WHEN 'MARKETING' THEN 4
+            ELSE 5
+          END desc
+
+
+create tABLE TB1EMPS(
+   EMPLOYEEID INT PRIMARY KEY,
+   PARENTEMPLOYEEID INT,
+   EMPLOYEENAME VARCHAR(100),
+   TITLE VARCHAR(100),
+   SALARY MONEY
+)
+
+INSERT INTO TB1EMPS(EMPLOYEEID,PARENTEMPLOYEEID,EMPLOYEENAME,TITLE,SALARY) VALUES
+(1,NULL,'JOHN SMITH','FOUNDER',1000000),
+(2,1,'SAM COOK','CEO',50000),
+(3,2,'AMANDA JOHNSON','SENIOR VP',1000000),
+(4,3,'MIKE HENRY','VP',4000),
+(5,4,'RAKESH DEV','MANAGER',5000),
+(6,5,'REHAN SHAIKH','ARCHITECT',6000)
+
+SELECT * FROM TB1EMPS
+
+SELECT * INTO TB1EMPS2 FROM TB1EMPS
+
+SELECT * FROM TB1EMPS
+SELECT * FROM TB1EMPS2 
+
+SELECT * FROM TB1EMPS
+UNION
+SELECT * FROM TB1EMPS2 
+
+SELECT * FROM TB1EMPS
+UNION ALL
+SELECT * FROM TB1EMPS2 
+
+SELECT EMPLOYEEID,EMPLOYEENAME,TITLE,SALARY FROM TB1EMPS
+UNION ALL
+SELECT EMPLOYEEID,EMPLOYEENAME,TITLE,SALARY FROM TB1EMPS2
+
+SELECT EMPLOYEEID,EMPLOYEENAME,NULL,SALARY FROM TB1EMPS
+UNION ALL
+SELECT EMPLOYEEID,EMPLOYEENAME,TITLE,SALARY FROM TB1EMPS2
+
+SELECT EMPLOYEEID,EMPLOYEENAME,NULL TITLE,SALARY FROM TB1EMPS
+UNION ALL
+SELECT EMPLOYEEID,EMPLOYEENAME,TITLE,SALARY FROM TB1EMPS2
+
+SELECT * FROM TB1EMPS
+UNION ALL
+SELECT * FROM TB1EMPS2 
+
+
+SELECT * FROM TB1EMPS
+INTERSECT
+SELECT * FROM TB1EMPS2 
+
+DELETE FROM TB1EMPS2 WHERE EMPLOYEEID = 6
 
 
  
+
 
 
